@@ -1,0 +1,13 @@
+*{
+    
+    font-family: 'el messiri', serif;
+}
+
+body{
+    text-align: center;
+    background-color: rgb(138, 219, 244);
+}
+
+main{
+    margin: 50px;
+}
