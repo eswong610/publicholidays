@@ -11,3 +11,17 @@ body{
 main{
     margin: 50px;
 }
+
+.bigQuotes-container{
+    background-color: white;
+    margin: 3rem;
+}
+
+.header-destination-container{
+    display:flex;
+    justify-content: center;
+}
+
+.header{
+    margin: 1rem;
+}

@@ -42,7 +42,7 @@ form.addEventListener('submit', (event)=>{
     let fromHolidayApi = ''
 
     //gets public holidays api
-    fetch("https://public-holiday.p.rapidapi.com/2020/CA", {
+    fetch("https://public-holiday.p.rapidapi.com/2021/CA", {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "public-holiday.p.rapidapi.com",
@@ -50,16 +50,22 @@ form.addEventListener('submit', (event)=>{
 	    }
     })
     .then(response => {
-	   return (response.json());
+       return (response.json());
+       
     })
     .then((json)=> {
+        console.log(json.length);
         //regex match to userInput(year and month), search api for holidays
         //let regex = userInput;
         let regexp = new RegExp (userInput, 'gi');
         let str = regexp.exec(json[0].date); //matched!! and returns an object
+
+        
+        
+
         fromHolidayApi = (str.input);
 
-        //console.log(json[0].date) 
+        
 
 
         //skyscanner
@@ -78,10 +84,15 @@ form.addEventListener('submit', (event)=>{
 
         .then(json=> {
             //console.log(json)
+            if (json) {
             json.Quotes.forEach(item => newQuote(item));
+            }else{
+                bigQuote.innerText = "no Results";
+            }
         })
 
     .catch(err => {
+        
 	    console.log(err);
     });
 
