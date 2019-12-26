@@ -42,7 +42,7 @@ form.addEventListener('submit', (event)=>{
     let fromHolidayApi = ''
 
     //gets public holidays api
-    fetch("https://public-holiday.p.rapidapi.com/2021/CA", {
+    fetch("https://public-holiday.p.rapidapi.com/2020/CA", {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "public-holiday.p.rapidapi.com",
@@ -54,19 +54,31 @@ form.addEventListener('submit', (event)=>{
        
     })
     .then((json)=> {
-        console.log(json.length);
+        //console.log(json);
         //regex match to userInput(year and month), search api for holidays
-        //let regex = userInput;
+
+        // let regexp = new RegExp (userInput, 'gi');
+        // let str = regexp.exec(json[0].date); //matched!! and returns an object
+        
         let regexp = new RegExp (userInput, 'gi');
-        let str = regexp.exec(json[0].date); //matched!! and returns an object
+        let datesArr = []; //holds dates that match the regex
+        console.log(userInput);
+        for (i=0; i<json.length; i++){
+            let str = regexp.exec(json[i].date);
+            if (str) {
+                datesArr.push(str);
+            }
+        }
+        
+        console.log(datesArr)
+
+        //fromHolidayApi = (str.input);
+        
+        //console.log(fromHolidayApi)
 
         
-        
 
-        fromHolidayApi = (str.input);
-
-        
-
+        //doesnt work yet - need to take el in datesArr and for loop holidayapi var 
 
         //skyscanner
         let testurl = 'https:skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/US/USD/en-US/SFO-sky/ORD-sky/' + fromHolidayApi + '?inboundpartialdate=2020-02-01'
@@ -83,16 +95,13 @@ form.addEventListener('submit', (event)=>{
         })
 
         .then(json=> {
-            //console.log(json)
-            if (json) {
+            console.log(json)
+            
             json.Quotes.forEach(item => newQuote(item));
-            }else{
-                bigQuote.innerText = "no Results";
-            }
+            
         })
 
     .catch(err => {
-        
 	    console.log(err);
     });
 

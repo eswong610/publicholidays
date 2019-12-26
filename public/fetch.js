@@ -1,5 +1,5 @@
  //fetch quotes from api
- function getQuotes (urlCountry, urlCurrency, urlLocale, urlOrigin, urlDestination, outboundDate, inboundDate) {
+ function getQuotes (outboundDate, inboundDate) {
     
     let urlBase = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0"
     let urlCountry  = "/US" ;
