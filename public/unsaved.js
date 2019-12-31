@@ -74,12 +74,12 @@ form.addEventListener('submit', (event)=>{
         
         
 
-       
+        //fromHolidayApi = (str.input);
+        
+        //console.log(fromHolidayApi)
 
         //skyscanner
-
-        function fromSkyscanner(outDate) {
-        let testurl = 'https:skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/US/USD/en-US/SFO-sky/ORD-sky/' + outDate + '?inboundpartialdate=2020-02-01'
+        let testurl = 'https:skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/US/USD/en-US/SFO-sky/ORD-sky/' + fromHolidayApi + '?inboundpartialdate=2020-02-01'
 
         fetch(testurl, {
 	    "method": "GET",
@@ -102,12 +102,6 @@ form.addEventListener('submit', (event)=>{
     .catch(err => {
 	    console.log(err);
     });
-    }
-
-    for (let date in datesObj) {
-        let numDate = (datesObj[date]);
-        fromSkyscanner(numDate)
-    }
 
     })
 //end
