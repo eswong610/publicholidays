@@ -40,7 +40,25 @@
 
 
 
+export function placeID (country) {
+    fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/CAN/GBP/en-US/?query=Vancouver", {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
+            "x-rapidapi-key": "865169f4edmshe7ec10d9cf48163p14e90fjsn2b9b51c02cf1"
+        }
+    })
+    .then(response => {
+        console.log(response);
+    })
+    .catch(err => {
+        console.log(err);
+    });
+}
 
+
+
+import {newQuote} from './newQuoteNode.js'
 
 export function fromSkyscanner(outDate) {
     let testurl = 'https:skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/US/USD/en-US/SFO-sky/ORD-sky/' + outDate + '?inboundpartialdate=2020-02-01'
