@@ -5,7 +5,10 @@
 
 body{
     text-align: center;
-    background-color: rgb(138, 219, 244);
+    
+    background-image: url('../images/balloons.jpg');
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 main{
@@ -13,8 +16,19 @@ main{
 }
 
 .bigQuotes-container{
-    background-color: white;
     margin: 3rem;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.bigQuotes{
+    background-color: white;
+    border-radius: 7px;
+    opacity: 74%;
+    margin: 1rem;
+    padding: 2rem;
+    width:30rem;
 }
 
 .header-destination-container{
@@ -23,5 +37,10 @@ main{
 }
 
 .header{
-    margin: 1rem;
+    margin: 2rem;
+}
+
+.title{
+    margin: 2rem; 
+    padding: 0.5rem;
 }

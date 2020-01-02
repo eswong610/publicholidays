@@ -1,17 +1,35 @@
 
-let bigQuote = document.querySelector('.bigQuotes');
+let bigQuoteContainer = document.querySelector('.bigQuotes-container');
 
 function newQuote(post) {
 
-    const quotes = document.createElement("div");
-                quotes.classList.add("quote-block");
-                quotes.innerText = "Price " + post.MinPrice;
-                bigQuote.appendChild(quotes);
-    
-    const depDate = document.createElement("div");
-                depDate.classList.add("dep-date");
-                depDate.innerText = "Departure Date " + post.OutboundLeg.DepartureDate;
-                bigQuote.appendChild(depDate);
+    const bigQuotes = document.createElement('div');
+    bigQuotes.classList.add('bigQuotes');
+    bigQuoteContainer.appendChild(bigQuotes);
+
+const headerContainer = document.createElement('div');
+    headerContainer.classList.add('header-destination-container');
+    bigQuotes.appendChild(headerContainer);
+
+const header = document.createElement('p');
+    header.classList.add('header');
+    header.innerText = "Price: $" + post.MinPrice;
+    headerContainer.appendChild(header);
+
+
+const datesContainer = document.createElement('div');
+    datesContainer.classList.add('dates-container');
+    bigQuotes.appendChild(datesContainer);
+
+const departureDate = document.createElement('div');
+    departureDate.classList.add('departure-date');
+    datesContainer.appendChild(departureDate);
+
+const departureDateText= document.createElement('p');
+    departureDateText.innerText = "Departure: " + post.OutboundLeg.DepartureDate;
+    departureDate.appendChild(departureDateText);
+
+
     }
 
 
@@ -106,7 +124,8 @@ form.addEventListener('submit', (event)=>{
 
     for (let date in datesObj) {
         let numDate = (datesObj[date]);
-        fromSkyscanner(numDate)
+        fromSkyscanner(numDate);
+        
     }
 
     })
