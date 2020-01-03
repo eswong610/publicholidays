@@ -44,3 +44,17 @@ main{
     margin: 2rem; 
     padding: 0.5rem;
 }
+.airport-all-container{
+    display:flex;
+    justify-content: center;
+    
+}
+
+.country-returns-container{
+    background-color: white;
+    border-radius: 7px;
+    opacity: 74%;
+    margin: 1rem;
+    padding: 2rem;
+    width:30rem;
+}

@@ -28,5 +28,28 @@ const departureDateText= document.createElement('p');
     departureDateText.innerText = "Departure: " + post.OutboundLeg.DepartureDate;
     departureDate.appendChild(departureDateText);
 
-
     }
+
+let bigAirportContainer = document.querySelector('.country-returns-container')
+
+export function locationNode(element) {
+    const airportName = document.createElement('div');
+        airportName.classList.add('airport-name');
+        bigAirportContainer.appendChild(airportName);
+
+    const airportNameTitle = document.createElement('h3');
+        airportNameTitle.innerText = "Airport Name";
+        airportName.appendChild(airportNameTitle);
+
+    const airportNameText= document.createElement('p');
+        airportNameText.innerText = element.PlaceName
+        airportName.appendChild(airportNameText);
+    
+    const airportCode = document.createElement('div');
+        airportCode.classList.add('airport-code');
+        bigAirportContainer.appendChild(airportCode);
+    
+    const airportCodeText = document.createElement('p');
+        airportCodeText.innerText=element.PlaceId;
+        airportCode.appendChild(airportCodeText)
+}

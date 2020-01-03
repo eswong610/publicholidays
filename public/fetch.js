@@ -38,10 +38,10 @@
 //     });
 // }
 
+import {newQuote, locationNode} from './newQuoteNode.js'
 
-
-export function placeID (country) {
-    fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/CAN/GBP/en-US/?query=Vancouver", {
+export function placeID (country, city) {
+    fetch("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/autosuggest/v1.0/" + country + "/GBP/en-US/?query=" + city, {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
@@ -49,7 +49,12 @@ export function placeID (country) {
         }
     })
     .then(response => {
-        console.log(response);
+        return response.json();
+       
+    })
+    .then(json=> {
+        console.log(json["Places"][1])
+        json['Places'].forEach(item => locationNode(item));
     })
     .catch(err => {
         console.log(err);
@@ -58,10 +63,11 @@ export function placeID (country) {
 
 
 
-import {newQuote} from './newQuoteNode.js'
 
-export function fromSkyscanner(outDate) {
-    let testurl = 'https:skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/US/USD/en-US/SFO-sky/ORD-sky/' + outDate + '?inboundpartialdate=2020-02-01'
+
+
+export function fromSkyscanner(outDate, oriCountry, destCountry) {
+    let testurl = 'https:skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/US/CAD/en-US/'+ oriCountry +'/' + destCountry + '/' + outDate + '?inboundpartialdate=2020-02-01'
 
     fetch(testurl, {
     "method": "GET",

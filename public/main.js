@@ -1,5 +1,26 @@
 import {fromSkyscanner} from './fetch.js'
+import {placeID} from './fetch.js'
 
+
+//skyscanner country places api
+
+let countryform = document.querySelector("#country-form");
+countryform.addEventListener('submit', (event)=>{
+    event.preventDefault();
+    let outCity = document.querySelector('#outbound-city-form-input').value;
+    let outCountry = document.querySelector('#country-form select#outbound-country-select').value;
+    let inboundCity = document.querySelector('#inbound-city-form-input').value;
+    let inboundCountry = document.querySelector('#country-form select#inbound-country-select').value;
+    
+    //placeID(inboundCountry, inboundCity)
+    placeID(outCountry, outCity);
+    placeID(inboundCountry, inboundCity);
+})
+
+
+
+
+//skyscanner quotes cache api 
 const monToNum = {
     "January": "01",
     "February": "02",
@@ -15,15 +36,14 @@ const monToNum = {
     "December": '12',
 }
 
-
 let form = document.querySelector("#monthform");
 form.addEventListener('submit', (event)=>{
     event.preventDefault();
     let yearInput = document.querySelector('#yearInput').value;
     let monthInput = document.querySelector('#monthform select').value;
-
+    let oriCountryCode = document.querySelector('#origin-country-input').value;
+    let destCountryCode = document.querySelector('#dest-country-input').value
     let userInput = yearInput + '-' + monToNum[monthInput]; // eg 2019-01
-    let fromHolidayApi = '2020-01-01'
 
     //gets public holidays api
     fetch("https://public-holiday.p.rapidapi.com/2020/CA", {
@@ -39,7 +59,6 @@ form.addEventListener('submit', (event)=>{
     })
     .then((json)=> {
         //regex match to userInput(year and month), search api for holidays
-
         // let regexp = new RegExp (userInput, 'gi');
         // let str = regexp.exec(json[0].date); //matched!! and returns an object
         
@@ -54,43 +73,10 @@ form.addEventListener('submit', (event)=>{
             }
         }
 
-        //loop datesObj to to fill in holiday api
-        
-        
-
-       
-
-        //skyscanner
-
-    //     function fromSkyscanner(outDate) {
-    //     let testurl = 'https:skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browseroutes/v1.0/US/USD/en-US/SFO-sky/ORD-sky/' + outDate + '?inboundpartialdate=2020-02-01'
-
-    //     fetch(testurl, {
-	//     "method": "GET",
-	//     "headers": {
-	// 	    "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-	// 	    "x-rapidapi-key": "865169f4edmshe7ec10d9cf48163p14e90fjsn2b9b51c02cf1"
-	//     }
-    //     })
-    //     .then(response => {
-	//         return response.json();
-    //     })
-
-    //     .then(json=> {
-    //         console.log(json)
-            
-    //         json.Quotes.forEach(item => newQuote(item));
-            
-    //     })
-
-    // .catch(err => {
-	//     console.log(err);
-    // });
-    // }
-
     for (let date in datesObj) {
         let numDate = (datesObj[date]);
-        fromSkyscanner(numDate);
+        //let testCountry = 'ORD-sky'
+        fromSkyscanner(numDate, oriCountryCode, destCountryCode);
         
     }
 
